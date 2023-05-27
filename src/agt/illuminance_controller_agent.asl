@@ -40,6 +40,8 @@ task_requirements([2,3]).
 
   // creates a ThingArtifact artifact for reading and acting on the state of the lab Thing
   makeArtifact("lab", "wot.ThingArtifact", [Url], LabArtId);
+
+  calculateQ([2,3], 10, 0.5, 0.5,0.5, 100)[artifact_id(QLArtId)];
   
   // example use of the getActionFromState operation of the QLearner artifact
   // relevant for Task 2.3

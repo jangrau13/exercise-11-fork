@@ -36,7 +36,7 @@ For example, to switch on the Z1 Lights:
 ```json
 {
 
-  "Z1Light": true
+  "Z1Light": true 
 
 }
 ```

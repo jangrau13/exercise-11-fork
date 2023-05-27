@@ -28,7 +28,7 @@ repositories {
 dependencies {
     implementation group: 'com.google.guava', name: 'guava', version: '23.5-jre'
     implementation group: 'org.jacamo',     name: 'jacamo' ,   version: '0.9'
-    implementation 'com.github.Interactions-HSG:wot-td-java:v0.1.2'
+    implementation 'com.github.Interactions-HSG:wot-td-java:master-SNAPSHOT'
     implementation 'org.apache.httpcomponents.client5:httpclient5:5.0'
     implementation 'org.apache.httpcomponents.client5:httpclient5-fluent:5.0'
   //  implementation group: 'com.google.common', name: 'google-collect', version: '0.5'

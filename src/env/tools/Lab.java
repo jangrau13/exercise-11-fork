@@ -1,6 +1,8 @@
 package tools;
 
 import java.io.IOException;
+
+import org.apache.xalan.lib.sql.ObjectArray;
 import org.gradle.internal.impldep.com.google.common.collect.ImmutableSet;
 import java.util.*;
 import java.util.logging.*;
@@ -252,6 +254,32 @@ public class Lab extends LearningEnvironment {
     }
 
     /**
+     * selfmade
+     * @return value to check whether we have reached the desired state
+     */
+    public Integer[] getPossibleGoalDescription() {
+      int state1 = this.currentState.get(0);
+      int state2 = this.currentState.get(1);
+      Integer[] returner = new Integer[2];
+      returner[0] = state1;
+      returner[1] = state2;
+      return returner;
+    }
+    
+    /**
+     * selfmade
+     * @return value to check whether we have reached the desired state
+     */
+    public Integer getStateForQTable(List<Object> observation) {
+      int state1 = this.currentState.get(0);
+      int state2 = this.currentState.get(1);
+      Integer[] returner = new Integer[2];
+      returner[0]=state1;
+      returner[1] = state2;
+      return 1;
+    }
+
+    /**
     * @see {@link LearningEnvironment#getApplicableActions(int)}
     */
     @Override
@@ -285,7 +313,7 @@ public class Lab extends LearningEnvironment {
 
       try {
         a.getRequest().execute();
-        LOGGER.info(a.getRequest().toString());
+        //LOGGER.info(a.getRequest().toString());
       } catch (IOException e) {
         LOGGER.severe(e.getMessage());
       }
