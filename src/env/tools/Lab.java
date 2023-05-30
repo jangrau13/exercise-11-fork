@@ -6,7 +6,12 @@ import org.apache.xalan.lib.sql.ObjectArray;
 import org.gradle.internal.impldep.com.google.common.collect.ImmutableSet;
 import java.util.*;
 import java.util.logging.*;
+import java.util.stream.IntStream;
+
 import com.google.common.collect.Sets;
+
+import cartago.OPERATION;
+import cartago.OpFeedbackParam;
 import ch.unisg.ics.interactions.wot.td.ThingDescription;
 import ch.unisg.ics.interactions.wot.td.ThingDescription.TDFormat;
 import ch.unisg.ics.interactions.wot.td.affordances.ActionAffordance;
@@ -265,18 +270,26 @@ public class Lab extends LearningEnvironment {
       returner[1] = state2;
       return returner;
     }
+
     
     /**
      * selfmade
      * @return value to check whether we have reached the desired state
      */
-    public Integer getStateForQTable(List<Object> observation) {
-      int state1 = this.currentState.get(0);
-      int state2 = this.currentState.get(1);
-      Integer[] returner = new Integer[2];
-      returner[0]=state1;
-      returner[1] = state2;
-      return 1;
+    public List<Integer> getFullCurrentState() {
+      return this.currentState;
+    }
+
+    /**
+     * selfmade
+     * @return state index given an observation
+     */
+    public Integer getStateIndex(List<Integer> observation) {
+      List<List<Integer>> stateList = new ArrayList<>(stateSpace);
+      return IntStream.range(0, stateList.size())
+                .filter(i -> stateList.get(i).equals(observation))
+                .findFirst()
+                .orElse(-1);
     }
 
     /**
@@ -376,9 +389,9 @@ public class Lab extends LearningEnvironment {
     private int discretizeLightLevel(Double value) {
       if (value < 50) {
         return 0;
-      } else if (value < 100) {
+      } else if (value < 200) {
         return 1;
-      } else if (value < 300) {
+      } else if (value < 400) {
         return 2;
       }
       return 3;
